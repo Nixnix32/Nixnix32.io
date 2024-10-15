@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Configuración para dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Importación de fuentes de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&display=swap" rel="stylesheet">
+    <title>Repostería Dulce Sueño</title>
+    <!-- Estilos CSS -->
+    <style>
+        /* Reinicio de márgenes y paddings, y definición del box-sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos básicos del cuerpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff; /* Fondo blanco para contraste */
+        }
+
+        /* Enlace para saltar la navegación (mejora accesibilidad) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #e67e22;
+            color: #fff;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s ease;
+            text-decoration: none;
+        }
+
+        /* Mostrar el enlace al enfocarlo */
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Contenedor principal para centrar el contenido */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Estilos del encabezado */
+        header {
+            background: #e68123;
+            padding: 20px 0;
+        }
+
+        /* Logo del sitio */
+        .logo a {
+            font-size: 1.5em;
+            color: #fff;
+            text-decoration: none;
+            font-family: "Londrina Sketch", cursive;
+        }
+
+        /* Navegación principal */
+        nav {
+            float: right;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #faf4f4;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            color: #df8415;
+            outline: none; /* Eliminar el contorno predeterminado */
+        }
+
+        /* Limpiar flotados en el encabezado */
+        header::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Sección Hero (inicio) */
+        .hero {
+            background: url('tortas.jpg') no-repeat center center/cover;
+            height: 600px;
+            color: #fcfcfc;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centrar horizontalmente */
+            text-align: center;
+            transition: filter 0.4s ease;
+        }
+
+        .hero:hover {
+            filter: brightness(70%);
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: "Londrina Sketch", cursive;
+            transition: font-size 1s ease;
+        }
+
+        .hero h2:hover {
+            font-size: 4em;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e58e26;
+            color: #fff;
+            padding: 10px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+          
+        }
+
+        .btn:hover {
+            background: #df8415;
+            outline: none;
+        }
+
+        /* Sección Sobre Nosotros */
+        .about {
+            padding: 60px 0;
+            background: #f0f0f0;
+            text-align: center;
+        }
+
+        .about h2 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #e67e22;
+        }
+
+        .about p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Sección Productos */
+        .products {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .products h2 {
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #e67e22;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .product-item {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .product-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product-item h3 {
+            margin: 15px 0 10px;
+            color: #e67e22;
+        }
+
+        .product-item p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Sección Contacto */
+        .contact {
+            padding: 60px 0;
+            background: #f0f0f0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #e67e22;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: auto;
+            text-align: left; /* Mejor lectura del formulario */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            border-color: #e58e26;
+            outline: none;
+        }
+
+        .contact .btn {
+            width: 100%;
+            padding: 15px;
+            background: #e58e26;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .contact .btn:hover,
+        .contact .btn:focus {
+            background: #df8415;
+            outline: none;
+        }
+
+        /* Pie de página */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .social a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer .social a:hover,
+        footer .social a:focus {
+            color: #e67e22;
+            outline: none;
+        }
+
+        /* Responsividad para dispositivos pequeños */
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .product-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enlace para saltar la navegación y mejorar la accesibilidad -->
+    <a href="#main-content" class="skip-link">Ir al contenido principal</a>
+
+    <!-- Encabezado de la página -->
+    <header>
+        <div class="container">
+            <!-- Logo de la repostería con enlace a la página principal -->
+            <h1 class="logo">
+                <a href="index.html" aria-label="Repostería Dulce Sueño - Página principal">Repostería Dulce Sueño</a>
+            </h1>
+            <!-- Navegación principal con etiquetas ARIA para accesibilidad -->
+            <nav aria-label="Menú principal">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main id="main-content" role="main">
+        <!-- Sección de inicio (Hero) -->
+        <section id="inicio" class="hero" aria-labelledby="hero-heading">
+            <div class="container">
+                <h2 id="hero-heading">Deliciosos Postres para Cada Ocasión</h2>
+                <p>Descubre nuestra amplia variedad de tortas, cupcakes y dulces artesanales.</p>
+                <a href="#productos" class="btn">Ver Productos</a>
+            </div>
+        </section>
+
+        <!-- Sección Sobre Nosotros -->
+        <section id="nosotros" class="about" aria-labelledby="about-heading">
+            <div class="container">
+                <h2 id="about-heading">Sobre Nosotros</h2>
+                <p>En Repostería Dulce Sueño, nos apasiona crear dulces irresistibles que alegran tus momentos especiales. Con ingredientes de la más alta calidad y recetas tradicionales, ofrecemos una experiencia única en cada bocado.</p>
+            </div>
+        </section>
+
+        <!-- Sección de Productos -->
+        <section id="productos" class="products" aria-labelledby="products-heading">
+            <div class="container">
+                <h2 id="products-heading">Nuestros Productos</h2>
+                <div class="product-grid">
+                    <article class="product-item">
+                        <img src="dulce.jpg" alt="Cupcakes de Vainilla con glaseado de colores" />
+                        <h3>Cupcakes de Vainilla</h3>
+                        <p>Suaves y esponjosos, perfectos para cualquier ocasión.</p>
+                    </article>
+                    <!-- Puedes añadir más productos aquí siguiendo el mismo formato -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section id="contacto" class="contact" aria-labelledby="contact-heading">
+            <div class="container">
+                <h2 id="contact-heading">Contacto</h2>
+                <!-- Formulario de contacto accesible -->
+                <form action="#" method="post" aria-label="Formulario de contacto">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required aria-required="true" aria-label="Campo para ingresar tu nombre" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required aria-required="true" aria-label="Campo para ingresar tu correo electrónico" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required aria-required="true" aria-label="Campo para ingresar tu mensaje"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" aria-label="Enviar formulario de contacto">Enviar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Repostería Dulce Sueño. Todos los derechos reservados &hearts;.</p>
+            <!-- Enlaces a redes sociales -->
+            <div class="social" aria-label="Enlaces a redes sociales">
+                <a href="#" target="_blank" aria-label="Visita nuestra cuenta de Instagram">Instagram</a>
+                <a href="#" target="_blank" aria-label="Visita nuestra cuenta de Twitter">Twitter</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
